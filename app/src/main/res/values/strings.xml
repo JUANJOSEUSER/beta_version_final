@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="ingresar_p1">ingresar</string>
+    <string name="crear_cuenta_p1">crear cuenta</string>
+    <string name="contrase_a_p1">contraseña</string>
+    <string name="usuario_p1">usuario</string>
+    <string name="mostrar_p1">mostrar</string>
+</resources>
