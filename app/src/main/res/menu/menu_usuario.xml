@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/businessman_male_man_account_people_profile_person_avatar_user_icon_210812"
+        app:showAsAction="always" />
+</menu>

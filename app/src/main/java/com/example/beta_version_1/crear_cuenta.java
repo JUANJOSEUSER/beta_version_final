@@ -1,10 +1,13 @@
 package com.example.beta_version_1;
 
+import static com.example.beta_version_1.R.menu.menu_inicio;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
@@ -20,7 +23,11 @@ EditText usuario,pass;
         pass=findViewById(R.id.contra_b);
         admin=new base_datos(this,"bd1",null,1);
     }
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(menu_inicio,menu);
+        return true;
+    }
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();

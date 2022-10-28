@@ -1,5 +1,7 @@
 package com.example.beta_version_1;
 
+import static com.example.beta_version_1.R.menu.menu_inicio;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +40,11 @@ base_datos admin;
         admin=new base_datos(this,"bd1",null,1);
     }
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(menu_inicio,menu);
+        return true;
+    }
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
