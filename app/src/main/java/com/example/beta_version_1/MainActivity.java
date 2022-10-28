@@ -54,6 +54,8 @@ base_datos admin;
         Cursor d=f.rawQuery("select nombre,pass from usuario where nombre='"+usuario.getText().toString()+"'and pass='"+contraseña.getText().toString()+"'",null);
         if(d.moveToFirst()){
             Toast.makeText(this, "entro", Toast.LENGTH_SHORT).show();
+            Intent intro=new Intent(this,act_juego.class);
+            startActivity(intro);
 
         }else{
             Toast.makeText(this, "no", Toast.LENGTH_SHORT).show();

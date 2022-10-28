@@ -14,15 +14,7 @@ Button bon[][];
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_juego);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        bon[0][0]=findViewById(R.id.button);
-        bon[0][1]=findViewById(R.id.button);
-        bon[0][2]=findViewById(R.id.button);
-        bon[1][0]=findViewById(R.id.button);
-        bon[1][1]=findViewById(R.id.button);
-        bon[1][2]=findViewById(R.id.button);
-        bon[2][0]=findViewById(R.id.button);
-        bon[2][1]=findViewById(R.id.button);
-        bon[2][2]=findViewById(R.id.button);
+
     }
 
 
