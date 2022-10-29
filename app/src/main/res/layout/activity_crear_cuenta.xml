@@ -34,9 +34,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/usuario_b"
             android:layout_width="match_parent"
-            android:inputType="text"
-            android:layout_height="48dp"
-            android:hint="usuario" />
+            android:layout_height="55dp"
+            android:hint="usuario"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

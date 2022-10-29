@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -29,6 +30,7 @@ TextView crear_cuenta;
 CheckBox mostrar;
 Button ingresar;
 base_datos admin;
+MediaPlayer sonido;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ base_datos admin;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         usuario=findViewById(R.id.usuario);
         contraseña=findViewById(R.id.pass);
+        sonido=MediaPlayer.create(this,R.raw.sonido);
         admin=new base_datos(this,"bd1",null,1);
     }
 
@@ -57,6 +60,10 @@ base_datos admin;
     }
 
     public void ingresar(View view) {
+
+            if (sonido!=null){
+                sonido.start();
+            }
         SQLiteDatabase f=admin.getWritableDatabase();
         Cursor d=f.rawQuery("select nombre,pass from usuario where nombre='"+usuario.getText().toString()+"'and pass='"+contraseña.getText().toString()+"'",null);
         if(d.moveToFirst()){
