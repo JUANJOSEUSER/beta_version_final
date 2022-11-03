@@ -2,14 +2,18 @@ package com.example.beta_version_1;
 
 import static com.example.beta_version_1.R.menu.menu_inicio;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class act_juego extends AppCompatActivity {
@@ -23,6 +27,17 @@ String jugador="X";
         setContentView(R.layout.activity_act_juego);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         sonido= MediaPlayer.create(this,R.raw.sonido);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item_usuario:
+                Intent informacion=new Intent(this,informacion_usuario.class);
+                startActivity(informacion);
+                return true;
+        }
+        return false;
     }
 
     @Override

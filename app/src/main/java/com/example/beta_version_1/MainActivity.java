@@ -69,6 +69,9 @@ MediaPlayer sonido;
         if(d.moveToFirst()){
             Toast.makeText(this, "entro", Toast.LENGTH_SHORT).show();
             Intent intro=new Intent(this,act_juego.class);
+
+            intro.putExtra("usuario",usuario.getText().toString());
+            intro.putExtra("pass",contraseña.getText().toString());
             startActivity(intro);
 
         }else{
