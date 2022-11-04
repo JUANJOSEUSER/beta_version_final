@@ -7,4 +7,12 @@ public class plantilla_usuario {
         this.nombre = nombre;
         this.contraseña=pass;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
 }

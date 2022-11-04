@@ -89,17 +89,22 @@ public class verificacion_juego {
         for (int i = casillas.length-1; i >= 0 ; i--) {
             for (int j = 0; j < casillas.length; j++) {
                 if (casillas[i][j].getText().toString().equals("X")) {
+                    System.out.println(i+""+j);
                     diagonal_seg++;
-                    if (diagonal_seg==3) {
+                    if (diagonal_seg== casillas.length) {
                         System.out.println("gano x");
                         return true;
+                    }else{
+                        diagonal_seg=0;
                     }
                 }
                 if (casillas[i][j].getText().toString().equals("O")) {
                     diagonal_seg2++;
-                    if (diagonal_seg2==3) {
+                    if (diagonal_seg2== casillas.length) {
                         System.out.println("gano o");
                         return true;
+                    }else{
+                        diagonal_seg2=0 ;
                     }
 
                 }

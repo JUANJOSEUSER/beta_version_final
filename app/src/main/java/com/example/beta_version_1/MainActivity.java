@@ -6,7 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
@@ -29,6 +32,7 @@ Button ingresar;
 base_datos admin;
 MediaPlayer sonido;
 avisos_alerdialog alertas;
+    public plantilla_usuario info_usuario;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +69,12 @@ avisos_alerdialog alertas;
         SQLiteDatabase f=admin.getWritableDatabase();
         Cursor d=f.rawQuery("select nombre,pass from usuario where nombre='"+usuario.getText().toString()+"'and pass='"+contraseña.getText().toString()+"'",null);
         if(d.moveToFirst()){
+            mandar_datos(usuario.getText().toString());
             ingresar_otra_pantalla();
+
         }else{
             alertas=new avisos_alerdialog("error en la contraseña o usuario");
+            alertas.show(getFragmentManager(),"dialogo");
         }
 
     }
@@ -77,4 +84,10 @@ avisos_alerdialog alertas;
         intro.putExtra("pass",contraseña.getText().toString());
         startActivity(intro);
     }
+public void mandar_datos(String usuario){
+    SharedPreferences librito=getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);
+    SharedPreferences.Editor libro=librito.edit();
+    libro.putString("usuario",usuario);
+    libro.commit();
+}
 }
