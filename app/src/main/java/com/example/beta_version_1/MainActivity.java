@@ -25,12 +25,10 @@ import java.net.PasswordAuthentication;
 
 public class MainActivity extends AppCompatActivity {
 EditText usuario,contraseña;
-PasswordAuthentication contra;
-TextView crear_cuenta;
-CheckBox mostrar;
 Button ingresar;
 base_datos admin;
 MediaPlayer sonido;
+avisos_alerdialog alertas;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,16 +65,16 @@ MediaPlayer sonido;
         SQLiteDatabase f=admin.getWritableDatabase();
         Cursor d=f.rawQuery("select nombre,pass from usuario where nombre='"+usuario.getText().toString()+"'and pass='"+contraseña.getText().toString()+"'",null);
         if(d.moveToFirst()){
-            Toast.makeText(this, "entro", Toast.LENGTH_SHORT).show();
-            Intent intro=new Intent(this,act_juego.class);
-
-            intro.putExtra("usuario",usuario.getText().toString());
-            intro.putExtra("pass",contraseña.getText().toString());
-            startActivity(intro);
-
+            ingresar_otra_pantalla();
         }else{
-            Toast.makeText(this, "no", Toast.LENGTH_SHORT).show();
+            alertas=new avisos_alerdialog("error en la contraseña o usuario");
         }
 
+    }
+    public void ingresar_otra_pantalla(){
+        Intent intro=new Intent(this,act_juego.class);
+        intro.putExtra("usuario",usuario.getText().toString());
+        intro.putExtra("pass",contraseña.getText().toString());
+        startActivity(intro);
     }
 }

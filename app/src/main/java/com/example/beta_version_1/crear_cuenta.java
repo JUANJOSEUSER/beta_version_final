@@ -5,6 +5,7 @@ import static com.example.beta_version_1.R.menu.menu_inicio;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 public class crear_cuenta extends AppCompatActivity {
 base_datos admin;
 EditText usuario,pass;
+Intent salida;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,5 +43,8 @@ EditText usuario,pass;
         valores.put("pass",pass.getText().toString());
         d.insert("usuario",null,valores);
         d.close();
+        salida=new Intent(this,MainActivity.class);
+        startActivity(salida);
+        finish();
     }
 }

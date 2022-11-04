@@ -34,6 +34,7 @@
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
+                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -47,6 +48,7 @@
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
+                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -60,6 +62,7 @@
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
+                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
         </TableRow>
@@ -80,6 +83,7 @@
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
+                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -93,6 +97,7 @@
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
+                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -106,6 +111,7 @@
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
+                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
         </TableRow>
@@ -126,6 +132,7 @@
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
+                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -139,6 +146,7 @@
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
+                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -153,7 +161,8 @@
                 android:minHeight="48dp"
                 android:onClick="jugar"
                 android:textAlignment="center"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:text="#" />
         </TableRow>
 
     </TableLayout>
