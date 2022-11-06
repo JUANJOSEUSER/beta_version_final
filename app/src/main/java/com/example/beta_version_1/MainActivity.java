@@ -13,7 +13,9 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +34,6 @@ Button ingresar;
 base_datos admin;
 MediaPlayer sonido;
 avisos_alerdialog alertas;
-    public plantilla_usuario info_usuario;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,23 @@ avisos_alerdialog alertas;
         getMenuInflater().inflate(menu_inicio,menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.soporte:
+                Intent a=new Intent(Intent.ACTION_SEND);
+                a.setData(Uri.parse("mailto:"));
+                a.putExtra(Intent.EXTRA_EMAIL,new String[] {"jjmlj10@gmail.com"});
+                a.putExtra(Intent.EXTRA_SUBJECT,"Problema o inconveniente");
+                a.putExtra(Intent.EXTRA_TEXT,"descripcion del problema");
+                a.setType("message/rfc822");
+                startActivity(a);
+                return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -73,7 +91,7 @@ avisos_alerdialog alertas;
             ingresar_otra_pantalla();
 
         }else{
-            alertas=new avisos_alerdialog("error en la contraseña o usuario");
+            alertas=new avisos_alerdialog("error en la contraseña o usuario","alerta_opciones");
             alertas.show(getFragmentManager(),"dialogo");
         }
 

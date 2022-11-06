@@ -12,24 +12,15 @@ public class verificacion_juego {
         this.casillas = casillas;
     }
 
-    public boolean verificacion_casillas(){
+    public boolean verificacion_casillas() {
         int contX = 0;
-        int contO = 0;
         for (int i = 0; i < casillas.length; i++) {
-             contX = 0;
-           contO = 0;
+            contX = 0;
             for (int j = 0; j < casillas[i].length; j++) {
-                if (casillas[i][j].getText().toString().equals("X")) {
+
+                if (casillas[j][i].getText().toString().equals(this.letra)) {
                     contX++;
                     if (contX == casillas[i].length) {
-                        System.out.println("GANA EL JUGADOR X!!!");
-                        return true;
-                    }
-                }
-                if (casillas[i][j].getText().toString().equals("O")) {
-                    contO++;
-                    if (contO == casillas[i].length) {
-                        System.out.println("GANA EL JUGADOR O!!!");
                         return true;
                     }
                 }
@@ -37,22 +28,13 @@ public class verificacion_juego {
         }
         //..............................verificacion 2................................
         int contX2=0;
-        int contO2=0;
         for (int i = 0; i < casillas[0].length; i++) {
             contX2 = 0;
-            contO2 = 0;
             for (int j = 0; j < casillas.length; j++) {
-                if (casillas[i][j].getText().toString().equals("X")) {
+                if (casillas[i][j].getText().toString().equals(this.letra)) {
                     contX2++;
                     if (contX2 == casillas.length) {
                         System.out.println("GANA EL JUGADOR X!!!");
-                        return true;
-                    }
-                }
-                if (casillas[i][j].getText().toString().equals("O")) {
-                    contO2++;
-                    if (contO2 == casillas.length) {
-                        System.out.println("GANA EL JUGADOR O!!!");
                         return true;
                     }
                 }
@@ -60,57 +42,43 @@ public class verificacion_juego {
         }
 
         int diagonal_pri = 0;
-        int diagonal_pri2 = 0;
         for (int i = 0; i < casillas.length; i++) {
             for (int j = 0; j < casillas[i].length; j++) {
-                if (i==j) {
-
-                    if (casillas[i][j].getText().toString().equals("X")) {
+                if (i == j) {
+                    if (casillas[i][j].getText().toString().equals(this.letra)) {
                         diagonal_pri++;
-                        if (diagonal_pri==casillas.length) {
-                            System.out.println("gana x");
+                        if (diagonal_pri == casillas.length) {
                             return true;
 
                         }
                     }
-                    if (casillas[i][j].getText().toString().equals("O")) {
-                        diagonal_pri2++;
-                        if (diagonal_pri2==casillas.length) {
-                            System.out.println("gana o");
-                            return true;
-                        }
-                    }
+//
                 }
 
             }
         }
-        int diagonal_seg=0;
-        int diagonal_seg2=0;
-        for (int i = casillas.length-1; i >= 0 ; i--) {
-            for (int j = 0; j < casillas.length; j++) {
-                if (casillas[i][j].getText().toString().equals("X")) {
-                    System.out.println(i+""+j);
-                    diagonal_seg++;
-                    if (diagonal_seg== casillas.length) {
-                        System.out.println("gano x");
-                        return true;
-                    }else{
-                        diagonal_seg=0;
-                    }
-                }
-                if (casillas[i][j].getText().toString().equals("O")) {
-                    diagonal_seg2++;
-                    if (diagonal_seg2== casillas.length) {
-                        System.out.println("gano o");
-                        return true;
-                    }else{
-                        diagonal_seg2=0 ;
+        int diagonal_sec = 0;
+        for (int i = 0; i < casillas.length; i++) {
+
+            for (int j = casillas.length - 1; j >= 0; j--) {
+                if (i + j == casillas.length - 1) {
+                    if (casillas[i][j].getText().toString().equals(this.letra)) {
+                        diagonal_sec++;
+                        if (diagonal_sec == casillas.length) {
+                            return true;
+
+                        }
                     }
 
                 }
+
+
             }
+//                if (this.casillas[0][2].getText().toString().equals(this.letra)&&this.casillas[1][1].getText().toString().equals(this.letra)&&this.casillas[2][0].getText().toString().equals(this.letra)){
+//                    return true;
+//                }
         }
         return false;
-    }
 
+    }
 }

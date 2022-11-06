@@ -31,10 +31,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:layout_weight="1"
+                android:background="#363E527A"
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
-                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -45,10 +45,10 @@
                 android:layout_marginLeft="60dp"
                 android:layout_marginTop="50dp"
                 android:layout_weight="1"
+                android:background="#363E527A"
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
-                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -59,10 +59,10 @@
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="50dp"
                 android:layout_weight="1"
+                android:background="#363E527A"
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
-                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
         </TableRow>
@@ -80,10 +80,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
+                android:background="#363E527A"
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
-                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -94,10 +94,10 @@
                 android:layout_marginLeft="60dp"
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
+                android:background="#363E527A"
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
-                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -108,10 +108,10 @@
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
+                android:background="#363E527A"
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
-                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
         </TableRow>
@@ -129,10 +129,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
                 android:layout_weight="1"
+                android:background="#363E527A"
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
-                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -143,10 +143,10 @@
                 android:layout_marginLeft="60dp"
                 android:layout_marginTop="60dp"
                 android:layout_weight="1"
+                android:background="#363E527A"
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
-                android:text="#"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -157,12 +157,12 @@
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="60dp"
                 android:layout_weight="1"
+                android:background="#363E527A"
                 android:contentDescription="casilla"
                 android:minHeight="48dp"
                 android:onClick="jugar"
                 android:textAlignment="center"
-                android:textSize="24sp"
-                android:text="#" />
+                android:textSize="24sp" />
         </TableRow>
 
     </TableLayout>
@@ -199,7 +199,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/contador_jugador1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="0"
@@ -227,7 +227,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/contador_jugador2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="0"
@@ -237,12 +237,13 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/menu_flotante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
+        android:onClick="menus_flotante_mostrar"
         app:backgroundTint="#C80F31AE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
