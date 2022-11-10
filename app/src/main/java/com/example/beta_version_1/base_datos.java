@@ -13,10 +13,18 @@ public class base_datos extends SQLiteOpenHelper {
     tabla table=new tabla();
     @Override
     public void onCreate(SQLiteDatabase sql ){
+//        sql.execSQL("create table usuario(\n" +
+//                "id integer primary key AUTOINCREMENT,\n" +
+//                "nombre text(30),\n" +
+//                "pass text(30)\n" +
+//                ");");
         sql.execSQL("create table usuario(\n" +
                 "id integer primary key AUTOINCREMENT,\n" +
-                "nombre text(30),\n" +
-                "pass text(30)\n" +
+                "nombre text(30) unique,\n" +
+                "pass text(30),\n" +
+                "gmail text(30),\n" +
+                "telefono text(30),\n" +
+                "fecha text(30)\n" +
                 ");");
     }
 

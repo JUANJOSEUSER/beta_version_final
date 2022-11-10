@@ -32,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="Usuario"
+                    android:text="@string/usuario"
                     android:textSize="34sp" />
 
                 <TextView
@@ -40,7 +40,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="TextView"
                     android:textSize="34sp" />
 
             </TableRow>
@@ -54,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="Contraseña"
+                    android:text="@string/password"
                     android:textSize="34sp" />
 
                 <TextView
@@ -64,7 +63,6 @@
                     android:layout_margin="20dp"
                     android:inputType="textPassword"
                     android:minHeight="48dp"
-                    android:text="TextView"
                     android:textSize="34sp" />
             </TableRow>
 
@@ -72,27 +70,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:text="@string/fecha"
+                    android:textSize="34sp" />
 
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:text="Fecha nacimiento"
-                        android:textSize="34sp" />
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:text="TextView"
-                        android:textSize="34sp" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/select_fecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:textSize="34sp" />
 
             </TableRow>
 
@@ -105,15 +96,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="telefono"
+                    android:text="@string/telefono"
                     android:textSize="34sp" />
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/select_telefono"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="TextView"
                     android:textSize="34sp" />
             </TableRow>
 
@@ -126,15 +116,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="mail"
+                    android:text="@string/gmail"
                     android:textSize="34sp" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/select_gmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="TextView"
                     android:textSize="34sp" />
             </TableRow>
 

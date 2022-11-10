@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,8 +28,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class act_juego extends AppCompatActivity {
- TextView bon[][]=new TextView[3][3];
+ TextView casillas[][]=new TextView[3][3];
 String jugador="X";
     MediaPlayer sonido;
     verificacion_juego ganador;
@@ -42,15 +45,15 @@ FloatingActionButton boton;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_juego);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        bon[0][0]=findViewById(R.id.uno);
-        bon[0][1]=findViewById(R.id.dos);
-        bon[0][2]=findViewById(R.id.tres);
-        bon[1][0]=findViewById(R.id.cuatro);
-        bon[1][1]=findViewById(R.id.cinco);
-        bon[1][2]=findViewById(R.id.seis);
-        bon[2][0]=findViewById(R.id.siete);
-        bon[2][1]=findViewById(R.id.ocho);
-        bon[2][2]=findViewById(R.id.nueve);
+        casillas[0][0]=findViewById(R.id.uno);
+        casillas[0][1]=findViewById(R.id.dos);
+        casillas[0][2]=findViewById(R.id.tres);
+        casillas[1][0]=findViewById(R.id.cuatro);
+        casillas[1][1]=findViewById(R.id.cinco);
+        casillas[1][2]=findViewById(R.id.seis);
+        casillas[2][0]=findViewById(R.id.siete);
+        casillas[2][1]=findViewById(R.id.ocho);
+        casillas[2][2]=findViewById(R.id.nueve);
         jugador1=findViewById(R.id.contador_jugador1);
         jugador2=findViewById(R.id.contador_jugador2);
         boton=findViewById(R.id.menu_flotante);
@@ -77,6 +80,26 @@ FloatingActionButton boton;
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        ArrayList <String> lista=new ArrayList<>();
+        for (int i = 0; i < casillas.length; i++) {
+            for (int j = 0; j < casillas.length ; j++) {
+                lista.add(casillas[i][j].getText().toString());
+            }
+            
+        }
+        outState.putStringArrayList("casilla",lista);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        ArrayList <String> lista=savedInstanceState.getStringArrayList("casilla");
+        recuperar_instancia(lista);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(menu_inicio,menu);
         getMenuInflater().inflate(R.menu.menu_usuario,menu);
@@ -90,20 +113,20 @@ FloatingActionButton boton;
     }
 
     public void jugar(View view) {
-        TextView casillas=(TextView) view;
-        ganador=new verificacion_juego(jugador,bon);
-        if (casillas.getText().toString().equals("")){
+        TextView casilla=(TextView) view;
+        ganador=new verificacion_juego(jugador,casillas);
+        if (casilla.getText().toString().equals("")){
             sonidos();
-            casillas.setText(jugador);
+            casilla.setText(jugador);
             empates();
             escritura_cambio_de_letras();
         }
     }
     public void empates(){
         int contador=0;
-        for (int i = 0; i < bon.length ; i++) {
-            for (int j = 0; j < bon.length ; j++) {
-                if (!bon[i][j].getText().toString().equals("")){
+        for (int i = 0; i < casillas.length ; i++) {
+            for (int j = 0; j < casillas.length ; j++) {
+                if (!casillas[i][j].getText().toString().equals("")){
                     contador++;
                 }else{
                     contador=0;
@@ -116,9 +139,9 @@ FloatingActionButton boton;
     }
 
     public void resetear_tablero(){
-        for (int i = 0; i < bon.length ; i++) {
-            for (int j = 0; j < bon.length ; j++) {
-                bon[i][j].setText("");
+        for (int i = 0; i < casillas.length ; i++) {
+            for (int j = 0; j < casillas.length ; j++) {
+                casillas[i][j].setText("");
             }
         }
     }
@@ -197,6 +220,9 @@ save.setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
 });
 save.show();
     }
+
+
+
     public void recuperar_informacion(){
         SharedPreferences librito=getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);
         String aux=librito.getString("partidas_guardadas",null);
@@ -204,5 +230,23 @@ save.show();
             contador_partidas=Integer.parseInt(aux);
         }
 
+    }
+
+    public void recuperar_instancia(ArrayList<String> lista){
+        int aux=0;
+        for (int i = 0; i <lista.size(); i++) {
+            for (int j = 0; j <casillas.length ; j++) {
+                for (int k = 0; k <casillas.length ; k++) {
+                    if (lista.get(i)!=null){
+                        casillas[j][k].setText(lista.get(i));
+                        i++;
+                    }
+
+                }
+
+
+            }
+//
+        }
     }
 }

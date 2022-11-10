@@ -74,9 +74,6 @@ public class verificacion_juego {
 
 
             }
-//                if (this.casillas[0][2].getText().toString().equals(this.letra)&&this.casillas[1][1].getText().toString().equals(this.letra)&&this.casillas[2][0].getText().toString().equals(this.letra)){
-//                    return true;
-//                }
         }
         return false;
 
