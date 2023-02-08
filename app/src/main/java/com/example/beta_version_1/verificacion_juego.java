@@ -11,7 +11,7 @@ public class verificacion_juego {
         this.letra = letra;
         this.casillas = casillas;
     }
-
+//verificamos filas
     public boolean verificacion_casillas() {
         int contX = 0;
         for (int i = 0; i < casillas.length; i++) {
@@ -26,7 +26,7 @@ public class verificacion_juego {
                 }
             }
         }
-        //..............................verificacion 2................................
+        //..............................verificacion 2 columnas................................
         int contX2=0;
         for (int i = 0; i < casillas[0].length; i++) {
             contX2 = 0;
@@ -40,7 +40,7 @@ public class verificacion_juego {
                 }
             }
         }
-
+//diagonal principal
         int diagonal_pri = 0;
         for (int i = 0; i < casillas.length; i++) {
             for (int j = 0; j < casillas[i].length; j++) {
@@ -57,6 +57,7 @@ public class verificacion_juego {
 
             }
         }
+        //diagonal secundaria
         int diagonal_sec = 0;
         for (int i = 0; i < casillas.length; i++) {
 

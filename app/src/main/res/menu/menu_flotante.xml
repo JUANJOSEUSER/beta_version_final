@@ -11,4 +11,7 @@
     <item
         android:id="@+id/limpiar_puntaje"
         android:title="limpiar puntaje" />
+    <item
+        android:id="@+id/cargar_partida"
+        android:title="cargar partida" />
 </menu>

@@ -25,9 +25,9 @@
             android:id="@+id/usuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/usuario"
+            android:hint="@string/gmail"
 
-            android:inputType="text" />
+            android:inputType="textWebEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -82,5 +82,16 @@
             android:hint="@string/password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="24dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/crear_cuenta"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

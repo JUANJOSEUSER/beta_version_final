@@ -6,5 +6,10 @@
     <item
         android:id="@+id/soporte"
         android:title="Soporte" />
-    <item android:title="salir" />
+    <item
+        android:id="@+id/conexion"
+        android:title="sin conexion" />
+    <item
+        android:id="@+id/salir"
+        android:title="salir" />
 </menu>
