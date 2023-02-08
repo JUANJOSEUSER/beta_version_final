@@ -139,30 +139,30 @@ public class act_juego extends AppCompatActivity {
     }
 
     public void jugar(View view) {
-//        TextView casilla = (TextView) view;//lo tansformamos en textview para poder modificarlo
-//        ganador = new verificacion_juego(jugador, casillas);//hcaemos la verificaciones  pasandole la letra y las casillas la matriz
-//        if (casilla.getText().toString().equals("")) {//si la casilla esta vacia entra sino no
-//            sonidos();//llama a iniciar sonido
-//            casilla.setText(jugador);//mete la letra en la casilla elegida
-//            empates();//verificamos empates
-//            escritura_cambio_de_letras();//cambias de letra
-//        }
         TextView casilla = (TextView) view;//lo tansformamos en textview para poder modificarlo
         ganador = new verificacion_juego(jugador, casillas);//hcaemos la verificaciones  pasandole la letra y las casillas la matriz
+        if (casilla.getText().toString().equals("")) {//si la casilla esta vacia entra sino no
             sonidos();//llama a iniciar sonido
-            if (ganador.verificacion_modo(jugador,casillas)){
-                Toast.makeText(this, "elije una casilla", Toast.LENGTH_SHORT).show();
+            casilla.setText(jugador);//mete la letra en la casilla elegida
+            empates();//verificamos empates
+            escritura_cambio_de_letras();//cambias de letra
+        }
+//        TextView casilla = (TextView) view;//lo tansformamos en textview para poder modificarlo
+//        ganador = new verificacion_juego(jugador, casillas);//hcaemos la verificaciones  pasandole la letra y las casillas la matriz
+//            sonidos();//llama a iniciar sonido
+//            if (ganador.verificacion_modo(jugador,casillas)){
+//                Toast.makeText(this, "elije una casilla", Toast.LENGTH_SHORT).show();
 //                while(ganador.letra(casilla,jugador)){
-                    Toast.makeText(this, "se ha borrado", Toast.LENGTH_SHORT).show();
-                    casilla.setText(vacio);
-                    Toast.makeText(this, "elije otra casilla", Toast.LENGTH_SHORT).show();
-
+//                    Toast.makeText(this, "se ha borrado", Toast.LENGTH_SHORT).show();
+//                    casilla.setText(vacio);
+//                    Toast.makeText(this, "elije otra casilla", Toast.LENGTH_SHORT).show();
+//
 //                }
 //
-            }
-            else{
-                casilla.setText(jugador);//mete la letra en la casilla elegida
-            }
+//            }
+//            else{
+//                casilla.setText(jugador);//mete la letra en la casilla elegida
+//            }
             empates();//verificamos empates
             escritura_cambio_de_letras();//cambias de letra
 
