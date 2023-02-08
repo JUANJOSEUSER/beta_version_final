@@ -34,7 +34,7 @@
         android:id="@+id/crear_cuenta"
         android:layout_width="229dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="44dp"
         android:clickable="true"
         android:onClick="crear_cuenta_nueva"
         android:text="@string/crear_cuenta_p1"
@@ -44,18 +44,18 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/ingresar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="88dp"
-        android:text="@string/ingresar_p1"
+        android:layout_marginBottom="156dp"
         android:onClick="ingresar"
+        android:text="@string/ingresar_p1"
         app:cornerRadius="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/crear_cuenta"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -88,10 +88,23 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginBottom="100dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/crear_cuenta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="235dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="4dp"
+        android:clickable="true"
+        android:onClick="restablecer"
+        android:text="He olvidado mi contraseña"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

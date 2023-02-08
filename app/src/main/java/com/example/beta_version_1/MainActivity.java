@@ -120,17 +120,17 @@ if (!Gmail.getText().toString().isEmpty()&&!contraseña.getText().toString().isE
 
                                 progreso();
                             if (task.isSuccessful()){
-                                if (usuario_gmail.isEmailVerified()){
+//                                if (usuario_gmail.isEmailVerified()){
                                     mandar_datos(Gmail.getText().toString());
                                 ingresar_otra_pantalla();
                                 }else{
                                     alertas=new avisos_alerdialog("Email no verificado","generico");
                                     alertas.show(getFragmentManager(),"dialogo");
                                 }
-                            }else{
-                                alertas=new avisos_alerdialog("Error usuario no existe o contraseña mal escrita","generico");
-                                alertas.show(getFragmentManager(),"dialogo");
-                            }
+//                            }else{
+//                                alertas=new avisos_alerdialog("Error usuario no existe o contraseña mal escrita","generico");
+//                                alertas.show(getFragmentManager(),"dialogo");
+//                            }
 
                         }
                     }
@@ -182,17 +182,22 @@ if (!Gmail.getText().toString().isEmpty()&&!contraseña.getText().toString().isE
 
         libro.commit();
     }
-    public void restablecer(){
+    public void restablecer() {
         firebase.setLanguageCode("es");
-        firebase.sendPasswordResetEmail(Gmail.getText().toString()).addOnSuccessListener(new OnCompleteListener() {
+        firebase.sendPasswordResetEmail(Gmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task task) {
-                if (task.isSuccessful()){
-
-                }else{
-
-                }
+            public void onComplete(@NonNull Task<Void> task) {
+            if (task.isSuccessful()){
+                Toast.makeText(MainActivity.this, "se ha enviado el correo para la verificacion", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(MainActivity.this, "error en el envio de correo", Toast.LENGTH_SHORT).show();
+            }
             }
         });
+    }
+
+    public void restablecer(View view) {
+        Intent intro = new Intent(this, cambio_password.class);
+        startActivity(intro);
     }
 }

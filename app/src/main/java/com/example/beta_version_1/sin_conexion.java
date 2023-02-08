@@ -12,8 +12,13 @@ public class sin_conexion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sin_conexion);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//esto es para el boton de atras
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
     public void inicio_sesion(View view) {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);

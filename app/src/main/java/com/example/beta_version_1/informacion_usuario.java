@@ -72,11 +72,20 @@ public class informacion_usuario extends AppCompatActivity {
 
     }
     public void cambiar_password(View s){
-
+        Intent intro = new Intent(this, cambio_password.class);
+        startActivity(intro);
     }
     public void cerrar_sesion(View s){
         firebase.signOut();
+        mandar_datos("");
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
+        this.finish();
+    }
+    public void mandar_datos(String usuario){//cada vez que se inicia seccion se crea un xml donde guardaremos datos en memoria
+        SharedPreferences librito=getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);//se coloca el nombre del xml y el context si quiere ser privado o de acceso restringido
+        SharedPreferences.Editor libro=librito.edit();//editor hace la funcion de poder escribir en el xml mandadole la clave y el valor
+            libro.putString("usuario","vacio");//mandamos los datos
+        libro.commit();
     }
 }
