@@ -182,4 +182,17 @@ if (!Gmail.getText().toString().isEmpty()&&!contraseña.getText().toString().isE
 
         libro.commit();
     }
+    public void restablecer(){
+        firebase.setLanguageCode("es");
+        firebase.sendPasswordResetEmail(Gmail.getText().toString()).addOnSuccessListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+                if (task.isSuccessful()){
+
+                }else{
+
+                }
+            }
+        });
+    }
 }

@@ -1,4 +1,4 @@
-package random;
+package random_user;
 
 import java.security.SecureRandom;
 

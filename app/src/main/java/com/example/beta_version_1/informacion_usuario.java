@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -21,7 +23,7 @@ public class informacion_usuario extends AppCompatActivity {
     String usuario, pass;
     TextView user, contra, fecha, telefono, gmail;
     FirebaseFirestore registro;
-    FirebaseAuth myAuth;
+    FirebaseAuth firebase;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -34,7 +36,7 @@ public class informacion_usuario extends AppCompatActivity {
         fecha = findViewById(R.id.select_fecha);
         telefono = findViewById(R.id.select_telefono);
         gmail = findViewById(R.id.select_gmail);
-        myAuth = FirebaseAuth.getInstance();
+        firebase = FirebaseAuth.getInstance();
         registro = FirebaseFirestore.getInstance();
         informacion_de_usuario();
     }
@@ -66,5 +68,15 @@ public class informacion_usuario extends AppCompatActivity {
         SharedPreferences referencia = getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);
         return referencia.getString("usuario", null);
     }
+    public void eliminar_cuenta(View s){
 
+    }
+    public void cambiar_password(View s){
+
+    }
+    public void cerrar_sesion(View s){
+        firebase.signOut();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+    }
 }

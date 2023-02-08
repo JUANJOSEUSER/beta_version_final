@@ -43,6 +43,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import random_user.generador;
 
 
 public class crear_cuenta extends AppCompatActivity {
@@ -54,7 +55,7 @@ verificacion verificado=new verificacion();
         FirebaseFirestore registro;
      ProgressBar progresos;
 //    String Url="https://randomuser.me/api/";
-
+generador random=new generador();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,16 +148,23 @@ verificacion verificado=new verificacion();
 //        });
 //    }
 public void cloud(){
-       // DocumentReference docRef = registro.collection("usuarios").document("alovelace");
+
     Map<String, Object> user = new HashMap<>();
     user.put("Usuario", usuario.getText().toString());
     user.put("Gmail", gmail.getText().toString());
     user.put("Telefono", telefono.getText().toString());
     user.put("Fecha", fecha.getText().toString());
     user.put("Contraseña", pass.getText().toString());
-// Add a new document with a generated ID
 
     registro.collection("registros").document(gmail.getText().toString()).set(user);
 }
 
+    public void ram_pass(View view) {
+        pass.setText(random.generador_password(10));
+    }
+
+    public void ram_user(View view) {
+
+        usuario.setText(random.generador_usuario());
+    }
 }
