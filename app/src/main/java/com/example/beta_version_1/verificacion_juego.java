@@ -1,6 +1,8 @@
 package com.example.beta_version_1;
 
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class verificacion_juego {
 
@@ -78,5 +80,27 @@ public class verificacion_juego {
         }
         return false;
 
+    }
+    public boolean verificacion_modo(String letra, TextView[][] casillas){
+        int cont=0;
+        for (int i = 0; i <casillas.length; i++) {
+            for (int j = 0; j <casillas.length ; j++) {
+                if (casillas[i][j].getText().toString().equals(letra)){
+                   cont++;
+                }
+            }
+        }
+        if (cont==3){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean letra(TextView casilla,String letra){
+        if (casilla.getText().toString().equals(letra)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
