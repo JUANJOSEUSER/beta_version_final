@@ -5,10 +5,14 @@ import static com.example.beta_version_1.R.menu.menu_inicio;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DialogFragment;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -96,20 +100,21 @@ generador random=new generador();
         myAuth.createUserWithEmailAndPassword(gm, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progresos.setVisibility(View.GONE);
+                boolean pantalla=false;
+//                progresos.setVisibility(View.GONE);
                 //Si no ha habido problemas (la tarea de registrar el usuario ha sido exitosa: Feedback y redireccion a la MainActivity
                 if (task.isSuccessful()) {
-                    alertas = new avisos_alerdialog("cuentra creada con exito por favor verifica el correo para poder activar la cuenta", "alerta_opciones");//llamamos a los dialogos para que cuando finalice muestre un mensaje personalizado
-                    alertas.show(getFragmentManager(), "dialogo");//
-                    Toast.makeText(getApplicationContext(),"Cuenta creada por favor confirmar el correo de verificacion", Toast.LENGTH_SHORT ).show();
-                    cloud();
-                    FirebaseUser usuario_gmail=myAuth.getCurrentUser();
-                    usuario_gmail.sendEmailVerification();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
+                            cloud();
+                            FirebaseUser usuario_gmail=myAuth.getCurrentUser();
+                            usuario_gmail.sendEmailVerification();
+                            mandar_datos();
+                            limpiar_formulario();
+                            Intent intent = new Intent(crear_cuenta.this, MainActivity.class);
+                            startActivity(intent);
                 } else {
-                    //Toast.makeText(Register.this,"Se ha producido une error en el proceso de registro.", Toast.LENGTH_SHORT ).show();
-                    System.out.println("entro");
+                    alertas = new avisos_alerdialog("erro al crear la cuenta", "generico");//llamamos a los dialogos para que cuando finalice muestre un mensaje personalizado
+                    alertas.show(getFragmentManager(), "dialogo");//
+
 
                 }
             }
@@ -128,25 +133,13 @@ generador random=new generador();
         date_piker date = new date_piker(this, fecha);
     }
 
-//    public void respuesta(){
-//        OkHttpClient client=new OkHttpClient();
-//        Request request = new Request.Builder()
-//                .url(Url)
-//                .method("GET",null)
-//                .build();
-//            client.newCall(request).enqueue(new Callback() {
-//
-//            @Override
-//            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-//
-//            }
-//
-//            @Override
-//            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-//
-//            }
-//        });
-//    }
+public void limpiar_formulario(){
+        usuario.setText("");
+        gmail.setText("");
+        telefono.setText("");
+        fecha.setText("");
+        pass.setText("");
+}
 public void cloud(){
 
     Map<String, Object> user = new HashMap<>();
@@ -155,16 +148,32 @@ public void cloud(){
     user.put("Telefono", telefono.getText().toString());
     user.put("Fecha", fecha.getText().toString());
     user.put("Contraseña", pass.getText().toString());
+    user.put("activo",false);
 
     registro.collection("registros").document(gmail.getText().toString()).set(user);
 }
 
     public void ram_pass(View view) {
-        pass.setText(random.generador_password(10));
+        pass.setText(random.generador_password(6));
     }
 
     public void ram_user(View view) {
 
         usuario.setText(random.generador_usuario());
+    }
+
+    public void mensaje(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Instrucciones de creacion de cuenta").setMessage(" 1:usuario de mas de 6 caracteres minimo un numero \n 2:contraseña con al menos una miniscula y mayuscula y un numero que sea mayor a 8 de longitud \n 3:telefono valido en españa \n 4:gmail existente para su comprobacion por medio de un verificador \n 5:fecha ser mayor a 16 años");
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
+    public void mandar_datos(){//cada vez que se inicia seccion se crea un xml donde guardaremos datos en memoria
+        SharedPreferences librito=getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);//se coloca el nombre del xml y el context si quiere ser privado o de acceso restringido
+        SharedPreferences.Editor libro=librito.edit();//editor hace la funcion de poder escribir en el xml mandadole la clave y el valor
+        libro.putString("aviso","si");//mandamos los datos
+        libro.commit();
     }
 }

@@ -11,4 +11,21 @@
     <string name="imagen">Imagen</string>
     <string name="jugador1">Jugador1(X)</string>
     <string name="jugador2">Jugador2(O)</string>
+    <string name="restaurar">Restaurar contraseña</string>
+    <string name="texto_restaurar">Introduce el e-mail asociado a tu cuenta de TicTacToe y te enviaremos un enlace para restaurar tu contraseña.</string>
+    <string name="cuenta">Bienvenido a la creacion de susuarios </string>
+    <string name="cerrar_sesion">Cerrar sesion</string>
+    <string name="cambiar_coontra">Cambiar contraseña</string>
+    <string name="eliminar">Eliminar cuenta</string>
+    <string name="olvidar">He olvidado mi contraseña</string>
+    <string name="modo">Modo de juego</string>
+    <string name="normal">Normal</string>
+    <string name="infinito">Infinito</string>
+    <string name="como_jugar">Como jugar?</string>
+    <string name="inicia">Para ver tu perfil Inicia sesion</string>
+    <string name="iniciar_sesion">Iniciar sesion</string>
+    <string name="aplicar">Aplicar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="lenguaje">Lenguaje</string>
+
 </resources>

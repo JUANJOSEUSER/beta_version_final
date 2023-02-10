@@ -36,10 +36,10 @@ import java.util.List;
 public class act_juego extends AppCompatActivity {
     TextView casillas[][] = new TextView[3][3];
     String jugador = "X";
-    String vacio=" ";
+    String vacio = " ";
     MediaPlayer sonido;
     verificacion_juego ganador;
-    TextView jugador1, jugador2;
+    TextView jugador1, jugador2, letra;
     int contador_partidas = 0;
     PopupMenu flotante;
     FloatingActionButton boton;
@@ -62,7 +62,9 @@ public class act_juego extends AppCompatActivity {
         jugador1 = findViewById(R.id.contador_jugador1);
         jugador2 = findViewById(R.id.contador_jugador2);
         boton = findViewById(R.id.menu_flotante);
+        letra = findViewById(R.id.letra);
         recuperar_informacion();
+
 //        sonido= MediaPlayer.create(this,R.raw.sonido);
     }
 
@@ -77,10 +79,10 @@ public class act_juego extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_usuario:
-                if (sacar_referencias().equals("vacio")){
+                if (sacar_referencias().equals("vacio")) {
                     Intent informacion = new Intent(this, sin_conexion.class);
                     startActivity(informacion);
-                }else{
+                } else {
                     Intent informacion = new Intent(this, informacion_usuario.class);
                     startActivity(informacion);
                 }
@@ -101,10 +103,12 @@ public class act_juego extends AppCompatActivity {
         }
         return false;
     }
+
     public String sacar_referencias() {//abrimos el archivo xml y sacamos la referencia de usuario
         SharedPreferences referencia = getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);
         return referencia.getString("usuario", null);
     }
+
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -115,6 +119,10 @@ public class act_juego extends AppCompatActivity {
             }
 
         }
+        String puntos[]=new String[2];
+        puntos[0]=jugador1.getText().toString();
+        puntos[1]=jugador2.getText().toString();
+        outState.putStringArray("puntos",puntos);
         outState.putStringArrayList("casilla", lista);
     }
 
@@ -123,6 +131,10 @@ public class act_juego extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         ArrayList<String> lista = savedInstanceState.getStringArrayList("casilla");
         recuperar_instancia(lista);
+        String puntos[]=savedInstanceState.getStringArray("puntos");
+        jugador1.setText(puntos[0]);
+        jugador2.setText(puntos[1]);
+
     }
 
     @Override
@@ -140,6 +152,23 @@ public class act_juego extends AppCompatActivity {
 
     public void jugar(View view) {
         TextView casilla = (TextView) view;//lo tansformamos en textview para poder modificarlo
+
+        switch (recuperar_informacion()) {
+            case "normal":
+                normal(casilla);
+                break;
+            case "matrix":
+                letra.setText(jugador);
+                matrix(casilla);
+                break;
+            case "infinito":
+                infinito(casilla);
+                letra.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
+    public void normal(TextView casilla) {
         ganador = new verificacion_juego(jugador, casillas);//hcaemos la verificaciones  pasandole la letra y las casillas la matriz
         if (casilla.getText().toString().equals("")) {//si la casilla esta vacia entra sino no
             sonidos();//llama a iniciar sonido
@@ -147,24 +176,67 @@ public class act_juego extends AppCompatActivity {
             empates();//verificamos empates
             escritura_cambio_de_letras();//cambias de letra
         }
-//        TextView casilla = (TextView) view;//lo tansformamos en textview para poder modificarlo
-//        ganador = new verificacion_juego(jugador, casillas);//hcaemos la verificaciones  pasandole la letra y las casillas la matriz
-//            sonidos();//llama a iniciar sonido
-//            if (ganador.verificacion_modo(jugador,casillas)){
-//                Toast.makeText(this, "elije una casilla", Toast.LENGTH_SHORT).show();
-//                while(ganador.letra(casilla,jugador)){
-//                    Toast.makeText(this, "se ha borrado", Toast.LENGTH_SHORT).show();
-//                    casilla.setText(vacio);
-//                    Toast.makeText(this, "elije otra casilla", Toast.LENGTH_SHORT).show();
-//
-//                }
-//
-//            }
-//            else{
-//                casilla.setText(jugador);//mete la letra en la casilla elegida
-//            }
-            empates();//verificamos empates
+    }
+
+    public void infinito(TextView casilla) {
+
+        ganador = new verificacion_juego(jugador, casillas);//hcaemos la verificaciones  pasandole la letra y las casillas la matriz
+        sonidos();//llama a iniciar sonido
+        if (ganador.verificacion_modo(jugador, casillas)) {
+            Toast.makeText(this, "elije una casilla", Toast.LENGTH_SHORT).show();
+            while (ganador.letra(casilla, jugador) == true) {
+                Toast.makeText(this, "se ha borrado", Toast.LENGTH_SHORT).show();
+                casilla.setText(vacio);
+                Toast.makeText(this, "elije otra casilla", Toast.LENGTH_SHORT).show();
+            }
+
+        } else {
+
+            casilla.setText(jugador);//mete la letra en la casilla elegida
             escritura_cambio_de_letras();//cambias de letra
+            letra.setText(jugador);
+        }
+        empates();//verificamos empates
+
+    }
+
+    public void matrix(TextView casilla) {
+        ganador = new verificacion_juego(jugador, casillas);//hcaemos la verificaciones  pasandole la letra y las casillas la matriz
+
+        if (casilla.getText().toString().equals("")) {//si la casilla esta vacia entra sino no
+            sonidos();//llama a iniciar sonido
+            casilla.setText(jugador);//mete la letra en la casilla elegida
+            empates();//verificamos empates
+             escritura_cambio_de_letras();
+             if (jugador.equals("O")){
+                 matrix_modo(casillas);
+                 empates();
+                 ganador = new verificacion_juego(jugador, casillas);
+                 escritura_cambio_de_letras();//cambias de letra
+
+             }
+
+
+
+
+        }
+    }
+
+    public void matrix_modo(TextView[][] casillas) {
+        int aux1 = (int) (Math.random() * 3);
+        int aux2 = (int) (Math.random() * 3);
+        boolean verificador=false;
+        while(verificador==false){
+            if (casillas[aux1][aux2].getText().toString().equals("")) {
+                casillas[aux1][aux2].setText(jugador);
+                verificador=true;
+            }else{
+                aux1 = (int) (Math.random() * 3);
+                aux2 = (int) (Math.random() * 3);
+            }
+        }
+
+
 
     }
 
@@ -279,12 +351,10 @@ public class act_juego extends AppCompatActivity {
     }
 
 
-    public void recuperar_informacion() {
+    public String recuperar_informacion() {
         SharedPreferences librito = getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);
-        String aux = librito.getString("partidas_guardadas", null);
-        if (aux != null) {
-            contador_partidas = Integer.parseInt(aux);
-        }
+        String aux = librito.getString("modo", null);
+        return aux;
 
     }
 
@@ -305,15 +375,16 @@ public class act_juego extends AppCompatActivity {
 //
         }
     }
-    public Boolean restaurar_partida(){
+
+    public Boolean restaurar_partida() {
         SharedPreferences librito = getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);
         String aux = librito.getString("partidas_guardadas", null);
-        int tamaño=Integer.parseInt(aux);
-        String []partida=new String[tamaño];
-        for (int i = 0; i < tamaño ; i++) {
-            partida[i]=librito.getString(String.valueOf(i),null);
+        int tamaño = Integer.parseInt(aux);
+        String[] partida = new String[tamaño];
+        for (int i = 0; i < tamaño; i++) {
+            partida[i] = librito.getString(String.valueOf(i), null);
         }
-        AlertDialog.Builder alerta_partidas_guardadas=new AlertDialog.Builder(this);
+        AlertDialog.Builder alerta_partidas_guardadas = new AlertDialog.Builder(this);
         alerta_partidas_guardadas.setTitle("elije la partida a cargar");
         alerta_partidas_guardadas.setSingleChoiceItems(partida, 0, new DialogInterface.OnClickListener() {
             @Override
@@ -321,12 +392,12 @@ public class act_juego extends AppCompatActivity {
 
             }
         });
-    alerta_partidas_guardadas.setPositiveButton("acceptar", new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialogInterface, int i) {
+        alerta_partidas_guardadas.setPositiveButton("acceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
-        }
-    });
+            }
+        });
         alerta_partidas_guardadas.show();
         return true;
     }

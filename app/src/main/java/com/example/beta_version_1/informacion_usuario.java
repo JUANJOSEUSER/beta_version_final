@@ -1,5 +1,6 @@
 package com.example.beta_version_1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -11,9 +12,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -69,7 +74,7 @@ public class informacion_usuario extends AppCompatActivity {
         return referencia.getString("usuario", null);
     }
     public void eliminar_cuenta(View s){
-
+    desactivar_cuenta();
     }
     public void cambiar_password(View s){
         Intent intro = new Intent(this, cambio_password.class);
@@ -87,5 +92,18 @@ public class informacion_usuario extends AppCompatActivity {
         SharedPreferences.Editor libro=librito.edit();//editor hace la funcion de poder escribir en el xml mandadole la clave y el valor
             libro.putString("usuario","vacio");//mandamos los datos
         libro.commit();
+    }
+    public void desactivar_cuenta(){
+        DocumentReference activar=registro.collection("registros").document(gmail.getText().toString());
+        activar.update("activo",false).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(informacion_usuario.this, "cuenta desactivada", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(informacion_usuario.this, "error al desactivar tu cuenta", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

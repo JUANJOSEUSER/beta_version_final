@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="ingresar_p1">Get into</string>
+    <string name="crear_cuenta_p1">Create Account</string>
+    <string name="password">Password</string>
+    <string name="usuario">User</string>
+    <string name="gmail">Gmail</string>
+    <string name="telefono">Telefono</string>
+    <string name="fecha">Date</string>
+    <string name="mostrar_p1">Show</string>
+    <string name="imagen">Image</string>
+    <string name="jugador1">player1(X)</string>
+    <string name="jugador2">player2(O)</string>
+    <string name="restaurar">reset password</string>
+    <string name="texto_restaurar">Enter the email associated with your TicTacToe account and we will send you a link to reset your password.</string>
+    <string name="cuenta">Welcome to the creation of susuarios </string>
+    <string name="cerrar_sesion">Sign off</string>
+    <string name="cambiar_coontra">Change Password</string>
+    <string name="eliminar">Delete accounta</string>
+    <string name="olvidar">I forgot my password</string>
+    <string name="modo">Game mode</string>
+    <string name="normal">Normal</string>
+    <string name="infinito">Infinite</string>
+    <string name="como_jugar">How to play?</string>
+    <string name="inicia">To see your profile Login</string>
+    <string name="iniciar_sesion">Log in</string>
+
+
+</resources>

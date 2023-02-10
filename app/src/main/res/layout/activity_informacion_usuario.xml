@@ -146,21 +146,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="cerrar_sesion"
-                android:text="Cerrar sesion" />
+                android:text="@string/cerrar_sesion" />
 
             <Button
                 android:id="@+id/button5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="cambiar_password"
-                android:text="Cambiar contraseña" />
+                android:text="@string/cambiar_coontra" />
 
             <Button
                 android:id="@+id/button4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="eliminar_cuenta"
-                android:text="Eliminar_cuenta" />
+                android:text="@string/eliminar" />
 
         </LinearLayout>
     </ScrollView>

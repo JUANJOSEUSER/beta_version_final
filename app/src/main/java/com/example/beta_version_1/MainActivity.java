@@ -3,19 +3,19 @@ package com.example.beta_version_1;
 import static com.example.beta_version_1.R.menu.menu_inicio;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.method.Touch;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,21 +23,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.window.SplashScreen;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import dialogos.avisos_alerdialog;
+import io.grpc.internal.SharedResourceHolder;
 
 public class MainActivity extends AppCompatActivity {
     EditText Gmail, contraseña;
@@ -50,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     Handler handler;
     Runnable runi;
     Timer time;
+    boolean activos=false;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -63,8 +69,19 @@ public class MainActivity extends AppCompatActivity {
         firebase = FirebaseAuth.getInstance();
         registro=FirebaseFirestore.getInstance();
         progreso=findViewById(R.id.progressBar);
+if (sacar_referencias().equals("si")){
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle("Cuenta creada").setMessage("Verificar correo para poder usar la aplicacion");
+    builder.setPositiveButton("Acceptar",new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
 
-
+        }
+    });
+    AlertDialog alert = builder.create();
+    alert.show();
+}
+aviso();
 
     }
 
@@ -88,6 +105,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.conexion:
                 ingresar_otra_pantalla();
                 mandar_datos("");
+                return true;
+            case R.id.opciones:
+                Intent ventana_cuenta = new Intent(this, configuraciones.class);//es el link que lleva a crear cuentas
+                startActivity(ventana_cuenta);
+                return true;
         }
         return false;
     }
@@ -96,6 +118,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return false;
+    }
+    public void cambiar(){
+       Resources res=MainActivity.this.getResources();
+        DisplayMetrics en=res.getDisplayMetrics();
+        android.content.res.Configuration enf=res.getConfiguration();
+        enf.locale =new Locale("en");
+        res.updateConfiguration(enf,en);
     }
 
     public void crear_cuenta_nueva(View view) {
@@ -111,26 +140,27 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser usuario_gmail=firebase.getCurrentUser();
 if (!Gmail.getText().toString().isEmpty()&&!contraseña.getText().toString().isEmpty()){
-
-
             firebase.signInWithEmailAndPassword(Gmail.getText().toString(), contraseña.getText().toString()).addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
 
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 progreso();
+
                             if (task.isSuccessful()){
-//                                if (usuario_gmail.isEmailVerified()){
+                                informacion_de_usuario();
+                                if (usuario_gmail.isEmailVerified()||activos==true){
+                                    activar_cuenta();
                                     mandar_datos(Gmail.getText().toString());
                                 ingresar_otra_pantalla();
                                 }else{
                                     alertas=new avisos_alerdialog("Email no verificado","generico");
                                     alertas.show(getFragmentManager(),"dialogo");
                                 }
-//                            }else{
-//                                alertas=new avisos_alerdialog("Error usuario no existe o contraseña mal escrita","generico");
-//                                alertas.show(getFragmentManager(),"dialogo");
-//                            }
+                            }else{
+                                alertas=new avisos_alerdialog("Error usuario no existe o contraseña mal escrita","generico");
+                                alertas.show(getFragmentManager(),"dialogo");
+                            }
 
                         }
                     }
@@ -140,16 +170,24 @@ if (!Gmail.getText().toString().isEmpty()&&!contraseña.getText().toString().isE
     alertas=new avisos_alerdialog("Campo vacio","generico");
     alertas.show(getFragmentManager(),"dialogo");
     }
-
-
-
-
-
     }
 
     public void ingresar_otra_pantalla (){
-        Intent intro = new Intent(this, act_juego.class);
+        Intent intro = new Intent(this, modo_juego.class);
         startActivity(intro);
+    }
+    public void activar_cuenta(){
+        DocumentReference activar=registro.collection("registros").document(Gmail.getText().toString());
+        activar.update("activo",true).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(MainActivity.this, "cuenta activa", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "error al activar tu cuenta", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
     public void progreso(){
         progreso.setVisibility(View.VISIBLE);
@@ -199,5 +237,27 @@ if (!Gmail.getText().toString().isEmpty()&&!contraseña.getText().toString().isE
     public void restablecer(View view) {
         Intent intro = new Intent(this, cambio_password.class);
         startActivity(intro);
+    }
+    public String sacar_referencias() {//abrimos el archivo xml y sacamos la referencia de usuario
+        SharedPreferences referencia = getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);
+        return referencia.getString("aviso", null);
+    }
+    public void aviso(){//cada vez que se inicia seccion se crea un xml donde guardaremos datos en memoria
+        SharedPreferences librito=getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);//se coloca el nombre del xml y el context si quiere ser privado o de acceso restringido
+        SharedPreferences.Editor libro=librito.edit();//editor hace la funcion de poder escribir en el xml mandadole la clave y el valor
+            libro.putString("aviso","vacio");//mandamos los datos
+        libro.commit();
+    }
+    public void informacion_de_usuario() {//esto hace una nueva conexion y hace un select el select para android studio es diferente
+        registro.collection("registros").document(Gmail.getText().toString()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()){{
+                    activos=documentSnapshot.getBoolean("activo");
+                }}
+            }
+        }
+
+        );
     }
 }

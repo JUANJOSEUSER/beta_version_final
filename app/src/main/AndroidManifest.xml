@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Beta_version_1"
         tools:targetApi="31">
         <activity
+            android:name=".configuraciones"
+            android:exported="false" />
+        <activity
+            android:name=".modo_juego"
+            android:exported="false" />
+        <activity
             android:name=".cambio_password"
             android:exported="false" />
         <activity

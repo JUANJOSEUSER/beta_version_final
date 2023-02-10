@@ -7,7 +7,7 @@ public class verificacion {
     int cont=0;
 
     public Boolean validar(EditText nombre, EditText Gmail, EditText pass, EditText telefono, EditText fecha){
-        if (nombre.getText().toString().matches("^[A-Za-z]\\w{5,15}$")){
+        if (nombre.getText().toString().matches("^[A-Za-z]{4,6}([0-9]{4})$")){
             cont++;
         }else{
             nombre.setError("error");
@@ -19,7 +19,7 @@ public class verificacion {
             Gmail.setError("error el formato no es el correcto o el campo esta vacio");
             return false;
         }
-        if(pass.getText().toString().matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,15}$")&&!pass.getText().toString().isEmpty()){
+        if(pass.getText().toString().matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{5,15}$")&&!pass.getText().toString().isEmpty()){
             cont++;
         }else{
             pass.setError("error en el formato de la contraseña o el campo esta vacio");

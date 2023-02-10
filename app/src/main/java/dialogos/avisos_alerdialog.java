@@ -26,7 +26,8 @@ public class avisos_alerdialog extends DialogFragment {//clase que se crea los d
         AlertDialog.Builder alerta=new AlertDialog.Builder(getActivity());
         switch (this.modo){//aqui se elige el modo en que se quiere mostrar los dialogos
             case "generico":
-                alerta.setTitle(this.mensaje);alerta.setPositiveButton("Acceptar", new DialogInterface.OnClickListener() {
+                alerta.setTitle(this.mensaje);
+                alerta.setPositiveButton("Acceptar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -50,5 +51,13 @@ public class avisos_alerdialog extends DialogFragment {//clase que se crea los d
         }
 
         return alerta.create();
+    }
+    public interface respuesta{
+        public void confirmar(DialogFragment dialog);
+        public void cancelar(DialogFragment dialog);
+    }
+    respuesta res;
+    public void precesar(respuesta a){
+        res=a;
     }
 }
