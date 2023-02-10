@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -74,7 +75,11 @@ public class informacion_usuario extends AppCompatActivity {
         return referencia.getString("usuario", null);
     }
     public void eliminar_cuenta(View s){
-    desactivar_cuenta();
+    eliminar_registro();
+    eliminar_cuenta();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        this.finish();
     }
     public void cambiar_password(View s){
         Intent intro = new Intent(this, cambio_password.class);
@@ -93,15 +98,29 @@ public class informacion_usuario extends AppCompatActivity {
             libro.putString("usuario","vacio");//mandamos los datos
         libro.commit();
     }
-    public void desactivar_cuenta(){
+    public void eliminar_cuenta(){
+         firebase.getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        user.delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+
+                        }
+                    }
+                });
+    }
+    public void eliminar_registro(){
         DocumentReference activar=registro.collection("registros").document(gmail.getText().toString());
-        activar.update("activo",false).addOnCompleteListener(new OnCompleteListener<Void>() {
+        activar.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(informacion_usuario.this, "cuenta desactivada", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(informacion_usuario.this, "se ha eliminado la cuenta", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(informacion_usuario.this, "error al desactivar tu cuenta", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(informacion_usuario.this, "error al eliminar la cuenta tu cuenta", Toast.LENGTH_SHORT).show();
                 }
             }
         });

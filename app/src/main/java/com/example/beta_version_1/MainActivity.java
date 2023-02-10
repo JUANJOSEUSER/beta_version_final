@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     Handler handler;
     Runnable runi;
     Timer time;
+    static  int sol=1;
     boolean activos=false;
 
 
@@ -69,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
         firebase = FirebaseAuth.getInstance();
         registro=FirebaseFirestore.getInstance();
         progreso=findViewById(R.id.progressBar);
+        if (sol==1){
+            aviso();
+            sol=0;
+        }
 if (sacar_referencias().equals("si")){
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle("Cuenta creada").setMessage("Verificar correo para poder usar la aplicacion");
@@ -144,19 +149,22 @@ if (!Gmail.getText().toString().isEmpty()&&!contraseña.getText().toString().isE
 
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-
                                 progreso();
-
                             if (task.isSuccessful()){
                                 informacion_de_usuario();
-                                if (usuario_gmail.isEmailVerified()||activos==true){
-                                    activar_cuenta();
-                                    mandar_datos(Gmail.getText().toString());
-                                ingresar_otra_pantalla();
-                                }else{
-                                    alertas=new avisos_alerdialog("Email no verificado","generico");
-                                    alertas.show(getFragmentManager(),"dialogo");
+                                try {
+                                    if (usuario_gmail.isEmailVerified()==true||activos==true){
+                                        activar_cuenta();
+                                        mandar_datos(Gmail.getText().toString());
+                                        ingresar_otra_pantalla();
+                                    }else{
+                                        alertas=new avisos_alerdialog("Email no verificado","generico");
+                                        alertas.show(getFragmentManager(),"dialogo");
+                                    }
+                                }catch (Exception e){
+                                    Toast.makeText(MainActivity.this, "fallo en la verifacion", Toast.LENGTH_SHORT).show();
                                 }
+
                             }else{
                                 alertas=new avisos_alerdialog("Error usuario no existe o contraseña mal escrita","generico");
                                 alertas.show(getFragmentManager(),"dialogo");
@@ -182,7 +190,7 @@ if (!Gmail.getText().toString().isEmpty()&&!contraseña.getText().toString().isE
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "cuenta activa", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "has iniciado sesion", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(MainActivity.this, "error al activar tu cuenta", Toast.LENGTH_SHORT).show();
                 }
@@ -260,4 +268,5 @@ if (!Gmail.getText().toString().isEmpty()&&!contraseña.getText().toString().isE
 
         );
     }
+
 }

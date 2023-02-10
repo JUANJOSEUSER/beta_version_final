@@ -1,11 +1,15 @@
 package com.example.beta_version_1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -64,5 +68,47 @@ public class modo_juego extends AppCompatActivity {
             intruccion.setVisibility(View.INVISIBLE);
             aux = false;
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_usuario:
+                if (sacar_referencias().equals("vacio")) {
+                    Intent informacion = new Intent(this, sin_conexion.class);
+                    startActivity(informacion);
+                } else {
+                    Intent informacion = new Intent(this, informacion_usuario.class);
+                    startActivity(informacion);
+                }
+
+                return true;
+            case R.id.salir://apenas implementado
+                finish();
+                return true;
+            case R.id.soporte:
+                Intent a = new Intent(Intent.ACTION_SEND);
+                a.setData(Uri.parse("mailto:"));
+                a.putExtra(Intent.EXTRA_EMAIL, new String[]{"jjmlj10@gmail.com"});
+                a.putExtra(Intent.EXTRA_SUBJECT, "Problema o inconveniente");
+                a.putExtra(Intent.EXTRA_TEXT, "descripcion del problema");
+                a.setType("message/rfc822");
+                startActivity(a);
+                return true;
+            case R.id.opciones:
+                Intent ventana_cuenta = new Intent(this, configuraciones.class);//es el link que lleva a crear cuentas
+                startActivity(ventana_cuenta);
+                return true;
+        }
+        return false;
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_v2, menu);
+        getMenuInflater().inflate(R.menu.menu_usuario, menu);
+        return true;
+    }
+    public String sacar_referencias() {//abrimos el archivo xml y sacamos la referencia de usuario
+        SharedPreferences referencia = getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);
+        return referencia.getString("usuario", null);
     }
 }

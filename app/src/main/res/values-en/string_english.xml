@@ -6,7 +6,7 @@
     <string name="password">Password</string>
     <string name="usuario">User</string>
     <string name="gmail">Gmail</string>
-    <string name="telefono">Telefono</string>
+    <string name="telefono">phone</string>
     <string name="fecha">Date</string>
     <string name="mostrar_p1">Show</string>
     <string name="imagen">Image</string>
@@ -25,6 +25,8 @@
     <string name="como_jugar">How to play?</string>
     <string name="inicia">To see your profile Login</string>
     <string name="iniciar_sesion">Log in</string>
-
+    <string name="aplicar">Apply</string>
+    <string name="cancelar">Cancel</string>
+    <string name="lenguaje">Language</string>
 
 </resources>

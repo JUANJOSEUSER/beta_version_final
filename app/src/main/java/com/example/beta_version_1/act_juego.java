@@ -100,6 +100,10 @@ public class act_juego extends AppCompatActivity {
                 a.setType("message/rfc822");
                 startActivity(a);
                 return true;
+            case R.id.opciones:
+                Intent ventana_cuenta = new Intent(this, configuraciones.class);//es el link que lleva a crear cuentas
+                startActivity(ventana_cuenta);
+                return true;
         }
         return false;
     }
@@ -139,7 +143,7 @@ public class act_juego extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(menu_inicio, menu);
+        getMenuInflater().inflate(R.menu.menu_v2, menu);
         getMenuInflater().inflate(R.menu.menu_usuario, menu);
         return true;
     }
