@@ -32,7 +32,7 @@ public class verificacion {
             return false;
         }
         if (!fecha.getText().toString().isEmpty()){
-            if (Integer.parseInt(division_fecha(fecha.getText().toString()))<2021&&!fecha.getText().toString().isEmpty()){
+            if (Integer.parseInt(division_fecha(fecha.getText().toString()))<2005&&!fecha.getText().toString().isEmpty()){
                 cont++;
             }else{
                 fecha.setError("debes ser mayor de 16 y no estar el campo vacio");

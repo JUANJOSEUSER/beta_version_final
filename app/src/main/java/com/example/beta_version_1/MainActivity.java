@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -108,13 +109,15 @@ aviso();
                 startActivity(a);
                 return true;
             case R.id.conexion:
-                ingresar_otra_pantalla();
                 mandar_datos("");
+                ingresar_otra_pantalla();
                 return true;
             case R.id.opciones:
                 Intent ventana_cuenta = new Intent(this, configuraciones.class);//es el link que lleva a crear cuentas
                 startActivity(ventana_cuenta);
                 return true;
+            case R.id.salir:
+                finish();
         }
         return false;
     }
@@ -215,7 +218,7 @@ if (!Gmail.getText().toString().isEmpty()&&!contraseña.getText().toString().isE
             public void run() {
                 handler.post(runi);
             }
-        }, 10000 ,1000);
+        }, 1000 ,100);
     }
     public void mandar_datos(String usuario){//cada vez que se inicia seccion se crea un xml donde guardaremos datos en memoria
         SharedPreferences librito=getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);//se coloca el nombre del xml y el context si quiere ser privado o de acceso restringido
@@ -254,6 +257,8 @@ if (!Gmail.getText().toString().isEmpty()&&!contraseña.getText().toString().isE
         SharedPreferences librito=getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);//se coloca el nombre del xml y el context si quiere ser privado o de acceso restringido
         SharedPreferences.Editor libro=librito.edit();//editor hace la funcion de poder escribir en el xml mandadole la clave y el valor
             libro.putString("aviso","vacio");//mandamos los datos
+        libro.putInt("colorX",Color.BLACK);
+        libro.putInt("colorO",Color.BLACK);
         libro.commit();
     }
     public void informacion_de_usuario() {//esto hace una nueva conexion y hace un select el select para android studio es diferente

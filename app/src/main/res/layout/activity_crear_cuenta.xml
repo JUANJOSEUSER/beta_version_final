@@ -8,17 +8,17 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="43dp"
-        android:layout_height="44dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:clickable="true"
         android:contentDescription="@string/app_name"
         android:onClick="ram_pass"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.845"
+        app:layout_constraintHorizontal_bias="0.889"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.323"
+        app:layout_constraintVertical_bias="0.322"
         app:srcCompat="@drawable/reload_2_icon_icons_com_69598" />
 
     <TextView
@@ -51,33 +51,35 @@
             android:layout_height="72dp"
             android:layout_margin="10dp"
             android:layout_marginEnd="1dp"
-            android:background="#E0E7EC"
             app:boxBackgroundMode="none">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/usuario_b"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
+                android:background="#1B518842"
                 android:hint="@string/usuario"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textAlignment="textStart" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout3"
             style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
             android:layout_width="233dp"
-            android:layout_height="67dp"
+            android:layout_height="72dp"
             android:layout_margin="10dp"
-            android:background="#E0E7EC"
+            android:background="#1B518842"
             app:boxBackgroundMode="none"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/contra_b"
                 android:layout_width="match_parent"
-                android:layout_height="67dp"
+                android:layout_height="62dp"
                 android:hint="@string/password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textAlignment="textStart" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <EditText
@@ -85,20 +87,22 @@
             android:layout_width="231dp"
             android:layout_height="60dp"
             android:layout_margin="10dp"
-            android:background="#E0E7EC"
+            android:background="#1B518842"
             android:ems="10"
             android:hint="@string/telefono"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:textAlignment="viewStart" />
 
         <EditText
             android:id="@+id/fecha_nacimiento"
             android:layout_width="231dp"
             android:layout_height="59dp"
             android:layout_margin="10dp"
-            android:background="#E0E7EC"
+            android:background="#1B518842"
             android:ems="10"
             android:hint="@string/fecha"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textAlignment="viewStart" />
 
         <EditText
             android:id="@+id/gmail"
@@ -107,10 +111,11 @@
             android:layout_margin="10dp"
             android:layout_marginEnd="139dp"
             android:layout_marginBottom="8dp"
-            android:background="#E0E7EC"
+            android:background="#1B518842"
             android:ems="10"
             android:hint="@string/gmail"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textAlignment="viewStart" />
     </LinearLayout>
 
     <ImageView
@@ -140,17 +145,17 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="43dp"
-        android:layout_height="44dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:clickable="true"
         android:contentDescription="@string/app_name"
         android:onClick="ram_user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.845"
+        app:layout_constraintHorizontal_bias="0.889"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.159"
+        app:layout_constraintVertical_bias="0.162"
         app:srcCompat="@drawable/reload_2_icon_icons_com_69598" />
 
     <ImageView
@@ -161,9 +166,24 @@
         android:layout_marginEnd="5dp"
         android:clickable="true"
         android:contentDescription="@string/app_name"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:onClick="mensaje"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_help" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.352"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.911" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

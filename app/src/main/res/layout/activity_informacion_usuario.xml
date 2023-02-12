@@ -24,23 +24,28 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/imagen_perfil"
                 android:layout_width="98dp"
                 android:layout_height="88dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:onClick="subir"
                 app:srcCompat="@drawable/businessman_male_man_account_people_profile_person_avatar_user_icon_210812" />
 
             <TableRow
-                android:layout_width="385dp"
+                android:layout_width="369dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:text="@string/usuario"
                     android:textSize="20sp" />
 
@@ -48,21 +53,22 @@
                     android:id="@+id/select_usuario"
                     android:layout_width="227dp"
                     android:layout_height="29dp"
-                    android:layout_margin="20dp"
                     android:textSize="21sp" />
 
             </TableRow>
 
             <TableRow
-                android:layout_width="385dp"
+                android:layout_width="370dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="25dp"
                     android:text="@string/gmail"
                     android:textSize="20sp" />
 
@@ -70,21 +76,22 @@
                     android:id="@+id/select_gmail"
                     android:layout_width="wrap_content"
                     android:layout_height="29dp"
-                    android:layout_margin="20dp"
                     android:textSize="21sp" />
 
             </TableRow>
 
             <TableRow
-                android:layout_width="385dp"
+                android:layout_width="371dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:text="@string/telefono"
                     android:textSize="20sp" />
 
@@ -92,20 +99,21 @@
                     android:id="@+id/select_telefono"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_margin="20dp"
                     android:textSize="21sp" />
             </TableRow>
 
             <TableRow
-                android:layout_width="385dp"
+                android:layout_width="371dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="25dp"
                     android:text="@string/fecha"
                     android:textSize="20sp" />
 
@@ -113,21 +121,22 @@
                     android:id="@+id/select_fecha"
                     android:layout_width="wrap_content"
                     android:layout_height="28dp"
-                    android:layout_margin="20dp"
                     android:textSize="21sp" />
 
             </TableRow>
 
             <TableRow
-                android:layout_width="386dp"
-                android:layout_height="58dp"
-                android:layout_marginLeft="10dp">
+                android:layout_width="372dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:text="@string/password"
                     android:textSize="20sp" />
 
@@ -135,7 +144,6 @@
                     android:id="@+id/select_pass"
                     android:layout_width="wrap_content"
                     android:layout_height="27dp"
-                    android:layout_margin="20dp"
                     android:inputType="textPassword"
                     android:minHeight="48dp"
                     android:textSize="21sp" />
@@ -145,6 +153,7 @@
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:onClick="cerrar_sesion"
                 android:text="@string/cerrar_sesion" />
 

@@ -17,7 +17,7 @@ String resultado;
             public void onDateSet(DatePicker datePicker, int dia, int mes, int año) {
                 f.setText(String.valueOf(dia+"-"+mes+"-"+año));
             }
-        },2020,1,1);//esto es el dafaul del date piker
+        },2005,1,1);//esto es el dafaul del date piker
         fecha.show();//aqui lo mostramos y caprutamos el elegido con el ondateset
 
     }

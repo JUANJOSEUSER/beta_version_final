@@ -48,6 +48,10 @@ public class avisos_alerdialog extends DialogFragment {//clase que se crea los d
 
                     }
                 });
+                break;
+            case "normal":
+                alerta.setMessage(this.mensaje);
+
         }
 
         return alerta.create();

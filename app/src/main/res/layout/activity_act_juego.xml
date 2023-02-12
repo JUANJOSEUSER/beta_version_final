@@ -6,167 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".act_juego">
 
-    <TableLayout
-        android:id="@+id/tabla"
-        android:layout_width="407dp"
-        android:layout_height="379dp"
-        android:layout_below="@+id/tablero"
-        android:layout_marginTop="148dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
-            android:layout_width="342dp"
-            android:layout_height="126dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="34dp"
-            android:layout_marginBottom="5dp"
-            android:textAlignment="center">
-
-            <TextView
-                android:id="@+id/uno"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_weight="1"
-                android:background="#363E527A"
-                android:contentDescription="casilla"
-                android:minHeight="48dp"
-                android:onClick="jugar"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/dos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="50dp"
-                android:layout_weight="1"
-                android:background="#363E527A"
-                android:contentDescription="casilla"
-                android:minHeight="48dp"
-                android:onClick="jugar"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/tres"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="50dp"
-                android:layout_weight="1"
-                android:background="#363E527A"
-                android:contentDescription="casilla"
-                android:minHeight="48dp"
-                android:onClick="jugar"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="34dp">
-
-            <TextView
-                android:id="@+id/cuatro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_weight="1"
-                android:background="#363E527A"
-                android:contentDescription="casilla"
-                android:minHeight="48dp"
-                android:onClick="jugar"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/cinco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="30dp"
-                android:layout_weight="1"
-                android:background="#363E527A"
-                android:contentDescription="casilla"
-                android:minHeight="48dp"
-                android:onClick="jugar"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/seis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="30dp"
-                android:layout_weight="1"
-                android:background="#363E527A"
-                android:contentDescription="casilla"
-                android:minHeight="48dp"
-                android:onClick="jugar"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="34dp">
-
-            <TextView
-                android:id="@+id/siete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:layout_weight="1"
-                android:background="#363E527A"
-                android:contentDescription="casilla"
-                android:minHeight="48dp"
-                android:onClick="jugar"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/ocho"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="60dp"
-                android:layout_weight="1"
-                android:background="#363E527A"
-                android:contentDescription="casilla"
-                android:minHeight="48dp"
-                android:onClick="jugar"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/nueve"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="60dp"
-                android:layout_weight="1"
-                android:background="#363E527A"
-                android:contentDescription="casilla"
-                android:minHeight="48dp"
-                android:onClick="jugar"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-        </TableRow>
-
-    </TableLayout>
-
     <ImageView
         android:id="@+id/tablero"
         android:layout_width="352dp"
@@ -262,4 +101,156 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.154" />
+
+    <TextView
+        android:id="@+id/siete"
+        android:layout_width="71dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="32dp"
+        android:layout_weight="1"
+        android:contentDescription="casilla"
+        android:minHeight="48dp"
+        android:onClick="jugar"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.749" />
+
+    <TextView
+        android:id="@+id/cuatro"
+        android:layout_width="77dp"
+        android:layout_height="81dp"
+        android:layout_weight="1"
+        android:contentDescription="casilla"
+        android:minHeight="48dp"
+        android:onClick="jugar"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.538" />
+
+    <TextView
+        android:id="@+id/ocho"
+        android:layout_width="74dp"
+        android:layout_height="68dp"
+        android:layout_weight="1"
+        android:contentDescription="casilla"
+        android:minHeight="48dp"
+        android:onClick="jugar"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.734" />
+
+    <TextView
+        android:id="@+id/nueve"
+        android:layout_width="70dp"
+        android:layout_height="76dp"
+        android:layout_weight="1"
+        android:contentDescription="casilla"
+        android:minHeight="48dp"
+        android:onClick="jugar"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.749" />
+
+    <TextView
+        android:id="@+id/seis"
+        android:layout_width="76dp"
+        android:layout_height="77dp"
+        android:layout_weight="1"
+        android:contentDescription="casilla"
+        android:minHeight="48dp"
+        android:onClick="jugar"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.541" />
+
+    <TextView
+        android:id="@+id/cinco"
+        android:layout_width="79dp"
+        android:layout_height="77dp"
+        android:layout_weight="1"
+        android:contentDescription="casilla"
+        android:minHeight="48dp"
+        android:onClick="jugar"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.541" />
+
+    <TextView
+        android:id="@+id/dos"
+        android:layout_width="78dp"
+        android:layout_height="74dp"
+        android:layout_weight="1"
+        android:contentDescription="casilla"
+        android:minHeight="48dp"
+        android:onClick="jugar"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.334" />
+
+    <TextView
+        android:id="@+id/tres"
+        android:layout_width="70dp"
+        android:layout_height="76dp"
+        android:layout_weight="1"
+        android:contentDescription="casilla"
+        android:minHeight="48dp"
+        android:onClick="jugar"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.335" />
+
+    <TextView
+        android:id="@+id/uno"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_weight="1"
+        android:contentDescription="casilla"
+        android:minHeight="48dp"
+        android:onClick="jugar"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.334" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,65 +1,67 @@
 package com.example.beta_version_1;
 
-import static android.content.ContentValues.TAG;
+
 import static com.example.beta_version_1.R.menu.menu_inicio;
+import static com.example.beta_version_1.R.menu.menu_v2;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DialogFragment;
-import android.content.ContentValues;
+import android.annotation.SuppressLint;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
+
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirestoreRegistrar;
-import com.google.firestore.v1.WriteResult;
 
-import java.io.IOException;
-import java.lang.ref.ReferenceQueue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 import dialogos.avisos_alerdialog;
 import dialogos.date_piker;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+
 import random_user.generador;
 
 
 public class crear_cuenta extends AppCompatActivity {
     EditText usuario, pass, gmail, telefono, fecha;
-    Intent salida;
+
     avisos_alerdialog alertas;
     FirebaseAuth myAuth;
+    ProgressBar progreso;
+    Handler handler;
+    Runnable runi;
+    Timer time;
 verificacion verificado=new verificacion();
         FirebaseFirestore registro;
      ProgressBar progresos;
 //    String Url="https://randomuser.me/api/";
 generador random=new generador();
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +74,7 @@ generador random=new generador();
         fecha = findViewById(R.id.fecha_nacimiento);
         myAuth = FirebaseAuth.getInstance();
         registro=FirebaseFirestore.getInstance();
-
+        progreso=findViewById(R.id.progressBar2);
 
 
 
@@ -80,8 +82,33 @@ generador random=new generador();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {//para mostrar los menus creados con getmenuinflater
-        getMenuInflater().inflate(menu_inicio, menu);
+        getMenuInflater().inflate(menu_v2, menu);
         return true;//true para que siempre se muestre en esta clase
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {//capturamos el seleccionado por el menu
+        switch (item.getItemId()) { // capturamos el que se ha seleccionado con el que coincida se ejecutara
+            case R.id.soporte:
+                Intent a = new Intent(Intent.ACTION_SEND);
+                a.putExtra(Intent.EXTRA_EMAIL, new String[]{"jjmlj10@gmail.com"});
+                a.putExtra(Intent.EXTRA_SUBJECT, "Problema o inconveniente");
+                a.putExtra(Intent.EXTRA_TEXT, "descripcion del problema");
+                a.setType("message/rfc822");
+                startActivity(a);
+                return true;
+            case R.id.opciones:
+                Intent ventana_cuenta = new Intent(this, configuraciones.class);//es el link que lleva a crear cuentas
+                startActivity(ventana_cuenta);
+                return true;
+            case R.id.salir:
+                finish();
+                return true;
+        }
+        return false;
+    }
+    public void ingresar_otra_pantalla (){
+        Intent intro = new Intent(this, modo_juego.class);
+        startActivity(intro);
     }
 
     @Override
@@ -91,7 +118,26 @@ generador random=new generador();
     }
 
 
+    public void progreso(){
+        progreso.setVisibility(View.VISIBLE);
+        handler=new Handler();
+        runi=new Runnable() {
+            @Override
+            public void run() {
+                progreso.setVisibility(View.GONE);
+                time.cancel();
+            }
+        };
 
+
+        time =new Timer();
+        time.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(runi);
+            }
+        }, 1000 ,100);
+    }
     public void crear(View w) {
 
     String password = pass.getText().toString();
@@ -101,6 +147,7 @@ generador random=new generador();
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 boolean pantalla=false;
+                progreso();
 //                progresos.setVisibility(View.GONE);
                 //Si no ha habido problemas (la tarea de registrar el usuario ha sido exitosa: Feedback y redireccion a la MainActivity
                 if (task.isSuccessful()) {
