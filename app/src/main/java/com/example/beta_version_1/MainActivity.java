@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 if (sacar_referencias().equals("si")){
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle("Cuenta creada").setMessage("Verificar correo para poder usar la aplicacion");
-    builder.setPositiveButton("Acceptar",new DialogInterface.OnClickListener() {
+    builder.setPositiveButton("Aceptar",new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialogInterface, int i) {
 

@@ -410,7 +410,7 @@ public void animacion(TextView a){
     public void guardar_en_memoria() {
         AlertDialog.Builder save = new AlertDialog.Builder(this);
         save.setMessage("se va a guardar la partida con el nombre de Partida ");
-        save.setPositiveButton("acceptar", new DialogInterface.OnClickListener() {
+        save.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 res.add(jugador1.getText().toString()+"-"+jugador2.getText().toString());
@@ -420,7 +420,7 @@ public void animacion(TextView a){
             }
 
         });
-        save.setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
+        save.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -456,13 +456,13 @@ public void animacion(TextView a){
         }
     }
     public void num_part(){
-        registro.collection("partidas").document(sacar_referencias()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        registro.collection("Partidas").document(sacar_referencias()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()){{
                     res= (ArrayList) documentSnapshot.get("array");
                 }}else{
-                    Toast.makeText(act_juego.this, "actualizando", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(act_juego.this, "Actualizando", Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -490,7 +490,7 @@ public void animacion(TextView a){
                 guardados=partidas[i].split("-");
             }
         });
-        alerta_partidas_guardadas.setPositiveButton("acceptar", new DialogInterface.OnClickListener() {
+        alerta_partidas_guardadas.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (guardados!=null){

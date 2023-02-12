@@ -199,7 +199,7 @@ StorageReference storage;
         if (requestCode==CATEGORY_APP_GALLERY&&resultCode==RESULT_OK){
             Uri uri=data.getData();
 
-            StorageReference file=storage.child("foto").child(gmail.getText().toString()    );
+            StorageReference file=storage.child("foto/"+gmail.getText().toString());
             file.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -243,7 +243,8 @@ StorageReference storage;
     }
 public void leer(){
     final long ONE_MEGABYTE = 1024 * 1024;
-    StorageReference imge = storage.child("foto/".concat(sacar_referencias()));
+    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    StorageReference imge = storageReference.child("foto/"+sacar_referencias());
     imge.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
         @Override
         public void onSuccess(byte[] bytes) {
