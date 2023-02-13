@@ -128,7 +128,7 @@ ObjectAnimator animacion;
                 startActivity(a);
                 return true;
             case R.id.opciones:
-                Intent ventana_cuenta = new Intent(this, configuraciones.class);//es el link que lleva a crear cuentas
+                Intent ventana_cuenta = new Intent(this, config_juego.class);//es el link que lleva a crear cuentas
                 startActivity(ventana_cuenta);
                 finish();
                 return true;

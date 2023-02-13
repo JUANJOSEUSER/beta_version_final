@@ -25,9 +25,7 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class configuraciones extends AppCompatActivity {
     Spinner spinner;
-    int defaul= Color.BLACK;
-    int defaul2=Color.BLACK;
-    TextView letrax,letrao;
+
     String[] lenguaje = {"Español", "Ingles"};
     int[] banderas = {R.drawable.esspainflag_111796, R.drawable.usunitedstatesflag_111929};
 
@@ -37,55 +35,26 @@ public class configuraciones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuraciones);
         spinner = findViewById(R.id.spinner);
-        letrao=findViewById(R.id.letrao);
-        letrax=findViewById(R.id.letrax);
+
         paises_adaptador pais = new paises_adaptador();
         spinner.setAdapter(pais);
-        defaul= ContextCompat.getColor(this,R.color.black);
+
 
     }
 
     public void confirmar(View view) {
         if (spinner.getSelectedItem().toString().equals("Ingles")) {
             ingles();
-            aviso();
             recargar();
 
         } else {
             español();
-            aviso();
             recargar();
         }
 
 
     }
-public void elegir_color(View c){
-    AmbilWarnaDialog color=new AmbilWarnaDialog(this, defaul, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-        @Override
-        public void onCancel(AmbilWarnaDialog dialog) {
-        }
-        @Override
-        public void onOk(AmbilWarnaDialog dialog, int color) {
-            defaul=color;
-            letrao.setTextColor(color);
-        }
-    });
-    color.show();
-}
-    public void elegir_color2(View c){
-        AmbilWarnaDialog color=new AmbilWarnaDialog(this, defaul, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-            @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-            }
-            @Override
-            public void onOk(AmbilWarnaDialog dialog, int color) {
-                defaul2=color;
-                letrax.setTextColor(color);
 
-            }
-        });
-        color.show();
-    }
     public void ingles() {
         Resources res = configuraciones.this.getResources();
         DisplayMetrics en = res.getDisplayMetrics();
@@ -140,11 +109,5 @@ public void elegir_color(View c){
             return view;
         }
     }
-    public void aviso(){//cada vez que se inicia seccion se crea un xml donde guardaremos datos en memoria
-        SharedPreferences librito=getSharedPreferences("cuenta_informacio", Context.MODE_PRIVATE);//se coloca el nombre del xml y el context si quiere ser privado o de acceso restringido
-        SharedPreferences.Editor libro=librito.edit();//editor hace la funcion de poder escribir en el xml mandadole la clave y el valor
-        libro.putInt("colorX",defaul2);
-        libro.putInt("colorO",defaul);
-        libro.commit();
-    }
+
 }
